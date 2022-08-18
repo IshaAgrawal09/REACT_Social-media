@@ -37,6 +37,7 @@ export function CartProvider({ children }) {
     },
   ]);
   const [addPostCount, setAddPostCount] = useState(3);
+  const [showIcon, setShowIcon] = useState(true);
 
   return (
     <CartContext.Provider
@@ -63,6 +64,8 @@ export function CartProvider({ children }) {
         setEditData,
         editDataIndex,
         seteditDataIndex,
+        showIcon,
+        setShowIcon,
       }}
     >
       {children}

@@ -15,6 +15,8 @@ const ShowPost = () => {
     setActivityDisplay,
     setEditData,
     seteditDataIndex,
+    showIcon,
+    setShowIcon,
   } = useContext(CartContext);
 
   const [thoughts, setThoughts] = useState("");
@@ -55,6 +57,7 @@ const ShowPost = () => {
       left: 0,
       behavior: "smooth",
     });
+    setShowIcon(false);
     addPostArr.filter((items, index) => {
       if (index == event.currentTarget.id) {
         setActivityThoughts(items.text);
@@ -139,7 +142,7 @@ const ShowPost = () => {
                 </div>
               </div>
               {/* EDIT DELETE ICONS  */}
-              {item.username == loggedUser ? (
+              {item.username == loggedUser && showIcon ? (
                 <div className="editDeleteIcons">
                   <button
                     style={{ color: "purple" }}

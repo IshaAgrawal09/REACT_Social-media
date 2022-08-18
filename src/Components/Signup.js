@@ -29,12 +29,15 @@ const Signup = () => {
     ) {
       setError("Please fill all the Fields!");
     } else {
-      if (!/^[0-9]*$/.test(mobile)) {
-        setError("Mobile Number can only contains numbers!");
+      if (!/^[0-9]*$/.test(mobile) || mobile.length != 10) {
+        setError("Please fill valid phone number!");
         setMobile("");
-      } else if (!/^[0-9]*$/.test(code)) {
-        setError("Pin Code can only contains numbers!");
+      } else if (!/^[0-9]*$/.test(code) || code.length != 6) {
+        setError("Please fill valid pin code (Ex: 226010)!");
         setCode("");
+      } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        setError("You have entered an invalid email!");
+        setEmail("");
       } else {
         setUserArr([
           ...userArr,
@@ -68,90 +71,83 @@ const Signup = () => {
         <h2>SIGN UP</h2>
         <p style={{ color: "green" }}>{success}</p>
         <p id="error">{error}</p>
-        <div>
-          <input
-            type="text"
-            required
-            placeholder="Full Name"
-            value={fullname}
-            onChange={(event) => setFullname(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            required
-            placeholder="Username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            required
-            placeholder="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            required
-            placeholder="Mobile No:"
-            value={mobile}
-            minLength={10}
-            maxLength={10}
-            onChange={(event) => setMobile(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            required
-            placeholder="City"
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            className="country"
-            required
-            placeholder="Country"
-            value={country}
-            onChange={(event) => setCountry(event.target.value)}
-          />
-          <input
-            type="text"
-            className="country"
-            required
-            placeholder="Code"
-            minLength={6}
-            maxLength={6}
-            value={code}
-            onChange={(event) => setCode(event.target.value)}
-          />
-        </div>
-        <div>
-          Have an account? &nbsp; <Link to="/">Login</Link>
-        </div>
-        <div>
-          <button id="loginButton" onClick={signup}>
-            SIGNUP
-          </button>
-        </div>
+        <form>
+          <div>
+            <input
+              type="text"
+              required
+              placeholder="Full Name"
+              value={fullname}
+              onChange={(event) => setFullname(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Mobile No:"
+              value={mobile}
+              minLength={10}
+              maxLength={10}
+              onChange={(event) => setMobile(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="City"
+              value={city}
+              onChange={(event) => setCity(event.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              className="country"
+              placeholder="Country"
+              value={country}
+              onChange={(event) => setCountry(event.target.value)}
+            />
+            <input
+              type="text"
+              className="country"
+              placeholder="Code"
+              minLength={6}
+              maxLength={6}
+              value={code}
+              onChange={(event) => setCode(event.target.value)}
+            />
+          </div>
+          <div>
+            Have an account? &nbsp; <Link to="/">Login</Link>
+          </div>
+          <div>
+            <input type="submit" id="loginButton" onClick={signup} SIGNUP />
+          </div>
+        </form>
       </div>
     </div>
   );

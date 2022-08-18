@@ -19,6 +19,8 @@ const Activity = () => {
     setEditData,
     editDataIndex,
     seteditDataIndex,
+    showIcon,
+    setShowIcon,
   } = useContext(CartContext);
 
   const handleImageUpload = (event) => {
@@ -66,6 +68,7 @@ const Activity = () => {
     setActivityThoughts("");
     setActivityImage("");
     setActivityDisplay("none");
+    setShowIcon(true);
   };
   console.log(addPostArr);
   return (
